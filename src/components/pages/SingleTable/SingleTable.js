@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchTables } from '../../../redux/tablesRedux';
 import { fetchStatuses } from '../../../redux/statusRedux';
+import { Spinner } from 'react-bootstrap';
 
 
 const SingleTable = () => {
@@ -24,6 +25,8 @@ const SingleTable = () => {
   return (
     <>
       <h1 className="my-3">Table {id}</h1>
+      {!tableData && <div className="text-center py-5 mb-5"><Spinner animation="border" variant="primary" /> </div> }
+
       {tableData && <TableForm 
       id={tableData.id}
       status={tableData.status}
