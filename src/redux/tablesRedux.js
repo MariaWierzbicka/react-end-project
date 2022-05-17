@@ -11,11 +11,13 @@ export const modifyTables = payload => ({ type: MODIFY_TABLES, payload});
 
 export const fetchTables = () => {
   return (dispatch) => {
+  
     fetch('http://localhost:3131/api/tables')
       .then(res => res.json())
       .then(tables => dispatch(updateTables(tables)))
   }
 };
+
 export const changeTable = payload => {
   return (dispatch) => {
   const options = {

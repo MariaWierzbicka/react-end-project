@@ -3,27 +3,24 @@ import React, { useState } from 'react';
 import styles from './TableForm.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { getTableById, changeTable } from '../../../redux/tablesRedux';
+import { changeTable } from '../../../redux/tablesRedux';
 import { getAllStatuses } from '../../../redux/statusRedux';
 import shortid from 'shortid';
 import clsx from 'clsx';
-
+import propTypes from 'prop-types';
 
 const TableForm = props => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  
-  const id = props.id;
-  const tableData = useSelector(state => getTableById(state, id));
   const allStatuses = useSelector(state => getAllStatuses(state));
 
-
-  const [status, setStatus] = useState(tableData.status);
-  const [peopleAmount, setPeopleAmount] = useState(tableData.peopleAmount);
-  const [maxPeopleAmount, setMaxPeopleAmount] = useState(tableData.maxPeopleAmount);
-  const [bill, setBill] = useState(tableData.bill);
+  const id = props.id;
+  const [status, setStatus] = useState(props.status);
+  const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount);
+  const [maxPeopleAmount, setMaxPeopleAmount] = useState(props.maxPeopleAmount);
+  const [bill, setBill] = useState(props.bill);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -74,4 +71,13 @@ const TableForm = props => {
     </Form>
   )
 }
+
+TableForm.propTypes = {
+  id: propTypes.string.isRequired,
+  status: propTypes.string.isRequired,
+  peopleAmount: propTypes.number.isRequired,
+  maxPeopleAmount: propTypes.number.isRequired,
+  bill: propTypes.number.isRequired
+}
+
 export default TableForm;
