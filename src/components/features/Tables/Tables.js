@@ -12,7 +12,7 @@ const Tables = () => {
   return (
     <Container>
         {tables.map(table =>
-          <Row key={shortid()} className="border-bottom py-4 justify-content-between align-items-center">
+          <Row key={shortid()} className="border-bottom py-4 pr-0 justify-content-between align-items-center">
             <Col xs="4">
               <Row className="align-items-center">
                 <Col className="p-0">
@@ -23,10 +23,12 @@ const Tables = () => {
                 </Col>
               </Row>
             </Col>
-            <Col xs="2">
-              <Link to={'/table/' + table.id}>
-                <Button>Show more</Button>
-              </Link>
+            <Col xs={2}>
+              <Row>
+                <Link to={'/table/' + table.id} className="p-0 text-end">
+                  <Button>Show more</Button>
+                </Link>
+              </Row>
             </Col>
           </Row>
         )}
